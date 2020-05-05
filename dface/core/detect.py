@@ -398,7 +398,7 @@ face candidates:%d, current batch_size:%d"%(num_boxes, batch_size)
         if self.rnet_detector.use_cuda:
             feed_imgs = feed_imgs.cuda()
 
-        cls_map, reg = self.rnet_detector(feed_imgs)
+        cls_map, reg = self.rnet_detector(feed_imgs.float())
 
         cls_map = cls_map.cpu().data.numpy()
         reg = reg.cpu().data.numpy()
@@ -518,7 +518,7 @@ face candidates:%d, current batch_size:%d"%(num_boxes, batch_size)
         if self.rnet_detector.use_cuda:
             feed_imgs = feed_imgs.cuda()
 
-        cls_map, reg, landmark = self.onet_detector(feed_imgs)
+        cls_map, reg, landmark = self.onet_detector(feed_imgs.float())
 
         cls_map = cls_map.cpu().data.numpy()
         reg = reg.cpu().data.numpy()
